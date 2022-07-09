@@ -16,15 +16,19 @@ def signup(request):
 
     
    if request.method == 'POST':
-         username=request.POST['username']
-         firstname=request.POST['firstname']
-         lastname=request.POST['lastname']
-         email=request.POST['email']
-         pass1=request.POST['password']
-         pass2=request.POST['confpassword']
+         username = request.POST['username']
+         firstname = request.POST['firstname']
+         lastname = request.POST['lastname']
+         email = request.POST['email']
+         pass1 = request.POST['password']
+         pass2 = request.POST['confpassword']
        
-    
 
+         if User.objects.filter(username=username):
+               messages.error(request,'Username already exists')
+    
+         if User.objects.filter(email=email):
+               messages.error(request,'Email already exists')
         #  username=request.POST.get('username')
        
 
@@ -48,7 +52,7 @@ def signin(request):
         username=request.POST['username']
         pass1=request.POST['password']
 
-        user= authenticate(username=username,password=pass1)
+        user = authenticate(username=username,password=pass1)
 
         if user is not None:
             login(request,user)
