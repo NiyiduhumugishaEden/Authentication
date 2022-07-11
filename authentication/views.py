@@ -48,20 +48,20 @@ def signup(request):
 
 def signin(request):
 
-    if request.method == 'POST':
-        username=request.POST['username']
-        pass1=request.POST['password']
+    # if request.method == 'POST':
+    #     username=request.POST['username']
+    #     pass1=request.POST['password']
 
-        user = authenticate(username=username,password=pass1)
+    #     user = authenticate(username=username,password=pass1)
 
-        if user is not None:
-            login(request,user)
-            fname=user.first_name
-            return  render(request,'index.html',{'fname':fname})
+    #     if user is not None:
+    #         login(request,user)
+    #         fname=user.first_name
+    #         return  render(request,'index.html',{'fname':fname})
 
-        else:
-            messages.error(request,'Invalid Credentials')
-            return redirect('signup')
+    #     else:
+    #         messages.error(request,'Invalid Credentials')
+    #         return redirect('signup')
 
     return render(request,'signin.html')
 
